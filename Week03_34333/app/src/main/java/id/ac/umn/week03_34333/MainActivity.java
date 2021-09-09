@@ -1,44 +1,34 @@
-package id.ac.umn.week03_33738;
-
+package id.ac.umn.week03_34333;
 import android.os.Bundle;
-
 import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.View;
-
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import id.ac.umn.week03_33738.databinding.ActivityMainBinding;
-
+import id.ac.umn.week03_34333.databinding.ActivityMainBinding;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import java.util.LinkedList;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+
+public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
     private final LinkedList<String> mDaftarKata = new LinkedList<>();
     private RecyclerView mRecyclerView;
-    private DafterKataAdapter mAdapter;
-
+    private DaftarKataAdapter mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         setSupportActionBar(binding.toolbar);
-
 //        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
 //        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
@@ -47,18 +37,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int jumlahKata = mDaftarKata.size() ;
-                mDaftarKata.addLast("Kata " + (jumlahKata + 1) + " telah ditambahkan");
-                Objects.requireNonNull(mRecyclerView.getAdapter()).notifyItemInserted(jumlahKata);
+                mDaftarKata.addLast("Kata " + (jumlahKata + 1) +
+                        " telah ditambahkan");
+                Objects.requireNonNull
+                        (mRecyclerView.getAdapter()).notifyItemInserted(jumlahKata);
                 mRecyclerView.smoothScrollToPosition(jumlahKata);
             }
         });
 
-        for(int i=1; i<21; i++) {
+        for (int i = 1; i < 21; i++) {
             mDaftarKata.add("Kata " + i);
         }
-
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        mAdapter = new DafterKataAdapter(this, mDaftarKata);
+        mAdapter = new DaftarKataAdapter(this, mDaftarKata);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
