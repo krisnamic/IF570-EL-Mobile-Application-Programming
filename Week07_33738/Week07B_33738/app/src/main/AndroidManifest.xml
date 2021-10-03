@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Week07B_33738">
         <activity
+            android:name=".DetilVideoActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
